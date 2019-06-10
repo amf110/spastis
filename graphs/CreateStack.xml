@@ -1,0 +1,31 @@
+ <node id="ProductSet-Reader">
+    <operator>ProductSet-Reader</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <fileList>~INPUTFILE</fileList>
+    </parameters>
+  </node>
+  <node id="CreateStack">
+    <operator>CreateStack</operator>
+    <sources>
+      <sourceProduct.~NUM_STACK refid="ProductSet-Reader"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <masterBands/>
+      <sourceBands/>
+      <resamplingType>~RESAMPLING_TYPE</resamplingType>
+      <extent>~EXTENT</extent>
+      <initialOffsetMethod>~INITIAL_OFFSET_METHOD</initialOffsetMethod>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="CreateStack"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <file>~OUTPUTFILE</file>
+      <formatName>~WRITE_FORMAT</formatName>
+    </parameters>
+  </node>
+  

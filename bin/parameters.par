@@ -1,0 +1,67 @@
+######### CONFIGURATION FILE ######
+dir_slc =       									#[path] Path to images to process folder
+dir_out =                    						#[path] Path to result folder
+dir_tmp =                                       	#[path] Folder to save tmp files
+file_images =                     					#[path] Path to images.txt file. If not path or file doesn't exist all images will be processed.
+CPU =                                         		#[int] Number of cores to use at each single process.
+CACHE =                                  		 	#[int + G ] Maximum ram to use at process. Low values could generate java exceptions.
+PARALLEL_PROCESSES = 								#[int] Number of maximum parallel processes
+DELETE_TMP_FILES = 	                             	#[0/1] --> '1' Delete intermediate files stored at 'tmp' folder
+DELETE_STACK_FILES =                            	#[0/1] --> '1' Delete files used to generate stack
+##################################
+# SNAP GPT
+GPTBIN_PATH =   									#[path] Path to SNAP GPT
+##################################
+#SET PROCESSES TO DO
+#STEPS WILL BE PROCESSED IN ORDER TOP-DOWN
+~STEPS~ #NO MODIFY LINE
+Read = 1											#[1]   --> Read process, all executions need this parameter
+Apply-Orbit-File = 									#[0/1] --> Apply orbit file process, '1' the process wil be executed
+ThermalNoiseRemoval = 								#[0/1] --> Thermal noise removal, '1' the process wil be executed						
+Assembly_Orbit = 									#[0/1] --> Assembly Orbit process, '1' the process wil be executed
+Subset = 											#[0/1] --> Subset process, '1' the process wil be executed
+Calibration = 										#[0/1] --> Calibration process, '1' the process wil be executed
+Speckle-Filter = 									#[0/1] --> Speckle-Filter process, '1' the process wil be executed
+LinearToFromdB =									#[0/1] --> Conversión linear to dB process, '1' the process wil be executed
+Terrain-Correction =								#[0/1] --> Terrain correction process, '1' the process wil be executed
+CreateStack = 										#[0/1] --> Create stack process, '1' the process wil be executed
+Write = 1											#[1]   --> Write process results, all executions need this parameter
+~END_STEPS~ #NO MODIFY LINE
+##################################
+#SET PROCESSING PARAMETERS
+~PARAMETERS~ #NO MODIFY LINE
+~WRITE_FORMAT =                     				#Values 'BEAM-DIMAP'  or 'GeoTIFF'
+~TYPE_OF_FILTER =                               	#Values 'Boxcar' or 'IDAN'
+~FILTER_SIZE =         								#[int] Numeric value
+######### Terrain-Correction 
+~DEM_RESAMPLING_METHOD =     						#Values 'BILINEAR_INTERPOLATION' or 'BICUBIC_INTERPOLATION'
+~IMG_RESAMPLING_METHOD =      						#Values 'BILINEAR_INTERPOLATION' or 'BICUBIC_INTERPOLATION'
+~DEM_MODEL =                           				#Values 'SRTM 3Sec' or 'SRTM 1Sec HGT'
+~PIXEL_SPACING_METERS =                         	#[int/float] Numeric value
+~PIXEL_SPACING_DEGREE =                          	#[int/float] Numeric value
+~MAP_PROJECTION =                             		#Values 'WGS84' or 'UTM'
+######### END Terrain-Correction 
+######### SUBSET 
+~COORDINATES_FORMAT = FileXML                   	#Values 'FileXML' or 'Geographics' or 'Pixel'
+~KML_FILE_ROUTE = path  							#[path] Path to .kml file
+###Geographics coordinates parameters    
+~LONMIN =                                   	 	#[float] Numeric value
+~LATMIN =                                   		#[float] Numeric value
+~LONMAX =                                    		#[float] Numeric value
+~LATMAX =                                   		#[float] Numeric value
+###Geographics coordinates parameters END 
+###Pixel coordinates parameters     
+~PIXEL_X =                                     		#[int] Numeric value
+~PIXEL_Y =                                      	#[int] Numeric value
+~PIXEL_WIDTH =                                 		#[int] Numeric value
+~PIXEL_HEIGHT =                                		#[int] Numeric value
+###Pixel coordinates parameters END 
+######### END SUBSET 
+######### CREATE STACK 
+~RESAMPLING_TYPE =                 					#Values 'NEAREST_NEIGHBOUR' or 'BILINEAR_INTERPOLATION' or 'CUBIC_CONVOLUTION' or 'NONE'
+~EXTENT =                                     		#Values 'Minimum' or 'Master' or 'Maximum'
+~INITIAL_OFFSET_METHOD =        					#Values 'Product Geolocation' or 'Orbit'
+~SAVE_BANDS_SEPARATE = 								#[yes/no] --> 'yes' Create stack will save bands into differents stacks
+######### CREATE STACK END 
+~END_PARAMETERS~ #NO MODIFY LINE
+##################################
